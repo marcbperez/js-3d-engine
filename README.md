@@ -4,23 +4,47 @@ A simple 3D engine for JavaScript.
 
 ## Installation
 
-The sources from this project can be used directly from a browser, although you
-may want to install Python for a quick demonstration server.
-
-## Usage
-
-The sources can be cloned and used from a development server. The example below
-will make the project available at `http://127.0.0.1:8000/`.
+Start by downloading and building the project when necessary. The following
+commands will do the job on most Debian based Linux distributions.
 
 ```bash
 git clone https://github.com/marcbperez/js-3d-engine
 cd js-3d-engine
+```
+
+## Usage
+
+The command below will make the project available at `http://127.0.0.1:8000/`.
+
+```bash
+cd src
 python -m SimpleHTTPServer 8000
 ```
 
 ## Testing
 
-There is no testing in place for this project yet.
+Test checks are executed automatically every time the project is built. Builds
+can be done remotely or continuously on a development context. For continuous
+integration and development use docker-compose. This is recommended to keep the
+system clean while the project is built every time the sources change.
+
+```bash
+sudo docker-compose up
+```
+
+For continuous integration and development without any dependencies use the
+Gradle wrapper. This is the best option if the wrapper is available and the
+Docker context is not valid. For a full list of tasks, see
+`sudo ./gradlew tasks --all`. For a CI cycle use `sudo ./gradlew --continuous`.
+
+For continuous integration and development without Docker or the project wrapper
+use Gradle directly. This will create the wrapper in case it is not present.
+Similar to the above, for a CI cycle use `sudo gradle --continuous`. Gradle
+3.4.1 is required for this to work. Plain Docker is also available for remote
+integration tasks and alike. Build the image with `sudo docker build .` and run
+a new container with it. Information on how to install Docker and docker-compose
+can be found in their [official page][install-docker-compose]. A similar
+installation guide is available [for Gradle][install-gradle].
 
 ## Troubleshooting
 
@@ -56,3 +80,5 @@ This project is licensed under the [Apache License Version 2.0][license].
 [changelog]: CHANGELOG.md
 [license]: LICENSE
 [semver]: http://semver.org
+[install-docker-compose]: https://docs.docker.com/compose/install/
+[install-gradle]: https://gradle.org/install
